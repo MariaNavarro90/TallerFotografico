@@ -9,7 +9,7 @@ const NavBar = () => {
     <ul>
         <li>
             <a class="active" href="#home">
-            <img src={logo} alt="Home" style={{ height: '40px' }} /> {/* Ajusta el estilo según sea necesario */}</a>
+            <img src={logo} alt="Home" style={{ height: '40px' }} /> </a>
         </li>
         <li>
             <a href="#about">Talleres</a>
