@@ -1,4 +1,3 @@
-import React from 'react'
 import carrito from '../assets/carrito.svg'
 import '../style/cartWidget.css'
 
