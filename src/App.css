@@ -33,12 +33,42 @@
   }
 }
 
+h1, h2, h3, h4, h5, h6 {
+  text-transform: capitalize;
+}
+
 .card {
   padding: 2em;
 }
 
 .read-the-docs {
   color: #888;
+}
+
+ul.list-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  align-items: start;
+}
+
+.list-item {
+  display: block;
+  width: 95%;
+  margin: 4rem 0;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 

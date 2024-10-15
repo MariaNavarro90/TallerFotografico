@@ -1,31 +1,31 @@
-import React from 'react'
-import '../style/navbar.css'
-import logo from '../assets/logo.svg'
-import CartWidget from './cartWidget'
-
+import { Link } from 'react-router-dom';
+import '../style/navbar.css';
+import logo from '../assets/logo.svg';
+import CartWidget from './CartWidget';
 
 const NavBar = () => {
   return (
     <ul>
-        <li>
-            <a class="active" href="#home">
-            <img src={logo} alt="Home" style={{ height: '40px' }} /> {/* Ajusta el estilo según sea necesario */}</a>
-        </li>
-        <li>
-            <a href="#about">Talleres</a>
-        </li>
-        <li>
-            <a href="#about">Sobre Nosotros</a>
-        </li>
-        <li>
-            <a href="#services">Productos</a>
-        </li>
-        <li>
-            <a href="#contact">Contacto</a>
-        </li>
-        <CartWidget />
+      <li>
+        <Link to="/">
+          <img src={logo} alt="Home" style={{ height: '40px' }} />
+        </Link>
+      </li>
+      <li>
+        <Link to="/category/talleres">Talleres</Link>
+      </li>
+      <li>
+        <Link to="/category/sobre-nosotros">Sobre Nosotros</Link>
+      </li>
+      <li>
+        <Link to="/category/productos">Productos</Link>
+      </li>
+      <li>
+        <Link to="/category/contacto">Contacto</Link>
+      </li>
+      <CartWidget />
     </ul>
-  )
+  );
 }
 
-export default NavBar
+export default NavBar;
