@@ -10,6 +10,7 @@ const ItemList = ({ items }) => {
             <h2>{item.name}</h2>
             <img src={item.image} alt={item.name} />
             <p>{item.description}</p>
+            <a href={`/item/${item.id}`} className="button-link">Ver mas</a>
             <hr />
           </li>
         ))}

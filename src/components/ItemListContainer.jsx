@@ -89,7 +89,11 @@ export const fetchItemsByCategory = async (categoryId) => {
 
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(mockData[categoryId] || []);
+      if (categoryId) {
+        resolve(mockData[categoryId] || []);
+      } else {
+        resolve([...mockData.talleres, ...mockData.productos]);
+      }
     }, 1000);
   });
 };
