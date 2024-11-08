@@ -1,6 +1,83 @@
+/* cart.module.css */
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
+}
+
+.cartItems {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.cartItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.image {
+    max-width: 20em;
+    object-fit: cover;
+}
+
+.title {
+    font-size: 1.2em;
+    margin: 10px 0;
+}
+
+.description {
+    font-size: 1em;
+    margin: 10px 0;
+}
+
+.price, .quantity {
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.message {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.processing {
+    background-color: #f0ad4e;
+    color: white;
+    font-size: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.success {
+    background-color: #5cb85c;
+    color: white;
+    font-size: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
 }

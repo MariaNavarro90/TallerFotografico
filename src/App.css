@@ -1,8 +1,12 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
   text-align: center;
+  margin-bottom: 200px;
 }
 
 .logo {
@@ -51,7 +55,7 @@ ul.list-container {
   gap: 2rem;
   list-style-type: none;
   padding: 0;
-  margin: 0;
+  margin: 0 8em;
   align-items: start;
 }
 
@@ -69,6 +73,17 @@ ul.list-container {
   width: 100%;
   height: auto;
   border-radius: 5px;
+}
+
+button, .button-link {
+  padding: 1em 2em;
+  background-color: #646cff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 300ms;
+  display: block;
 }
 
 

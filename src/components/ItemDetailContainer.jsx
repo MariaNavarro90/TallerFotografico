@@ -5,10 +5,10 @@ import endPurchase from "../services/endPurchase";
 
 const fetchItemById = async (itemId) => {
   const mockData = {
-    1: { id: 1, name: 'Taller Creativo', description: '"Otras Maneras de Mirar" es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero', price: 100, stock: 10 },
-    2: { id: 2, name: 'Taller de Edición', description: 'Aprende edición de fotos', price: 150, stock: 5 },
-    3: { id: 3, name: 'Cámara', description: 'Cámara profesional', price: 500, stock: 2 },
-    4: { id: 4, name: 'Trípode', description: 'Trípode ajustable', price: 75, stock: 15 }
+    1: { id: 1, name: 'Taller Creativo', description: '"Otras Maneras de Mirar" es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero', image:'../public/tallerCreativo.jpeg', price: 100, stock: 10 },
+    2: { id: 2, name: 'Salidas fotográficas', description: 'Salimos a la ciudad', image:'../public/salidasFotograficas.jpeg', price: 150, stock: 5 },
+    3: { id: 3, name: 'Cámara', description: 'Cámara profesional', image:'../public/camara.jpg', price: 500, stock: 2 },
+    4: { id: 4, name: 'Trípode', description: 'Trípode ajustable', image:'../public/tripode.jpg', price: 75, stock: 15 }
   };
 
   return new Promise((resolve) => {

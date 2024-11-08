@@ -5,14 +5,28 @@
     padding: 20px;
     align-items: flex-start;
     text-align: left;
-    img {
-        padding-top: 20px;
-        width: 200px;
-    }
-    button {
-        height: 50px;
-    }
-    p{
-        text-align: center;
-    }
+    background-color: #F4F4F4;
+    color: #2D2D2D;
+}
+
+.cartItem img {
+    padding-top: 20px;
+    width: 200px;
+}
+
+.cartItem button {
+    height: 50px;
+    background-color: #FF6E4A;
+    color: #F4F4F4;
+    border: none;
+    cursor: pointer;
+}
+
+.cartItem button:hover {
+    background-color: #F5B045;
+    color: #2D2D2D;
+}
+
+.cartItem p {
+    text-align: center;
 }

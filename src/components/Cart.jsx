@@ -51,21 +51,29 @@ const Cart = () => {
     return (
         <div className={styles.container}>
             {isPurchasing ? (
-                <h1>Procesando la compra...</h1>
+                <div className={`${styles.message} ${styles.processing}`}>
+                    <div className={styles.icon}>⏳</div>
+                    <h1>Procesando la compra...</h1>
+                </div>
             ) : purchaseComplete ? (
-                <h1>Compra realizada con éxito! Gracias por tu compra!.</h1>
+                <div className={`${styles.message} ${styles.success}`}>
+                    <div className={styles.icon}>🎉</div>
+                    <h1>Compra realizada con éxito! Gracias por tu compra!.</h1>
+                </div>
             ) : cart.length ? (
                 <>
-                    {cart.map((cartItem) => {
-                        return <CartItem item={cartItem} key={cartItem.id} />;
-                    })}
+                    <div className={styles.cartItems}>
+                        {cart.map((cartItem) => {
+                            return <CartItem item={cartItem} key={cartItem.id} />;
+                        })}
+                    </div>
                     <h2>Total: ${total}</h2>
                     <button onClick={handlePurchase}>Finalizar compra</button>
                 </>
             ) : (
                 <>
                     <h1>No hay productos en el carrito</h1>
-                    <NavLink to={"/"}>Home</NavLink>
+                    <NavLink to={"/"} className={styles.button}>Home</NavLink>
                 </>
             )}
         </div>

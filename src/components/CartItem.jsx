@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
+import styles from '../style/cart.module.css';
 
 const CartItem = ({ item }) => {
   return (
-    <div>
-      <img src={item.pictureUrl || 'default-image-url.jpg'} alt={item.title} />
-      <h2>{item.title}</h2>
-      <p>{item.description}</p>
-      <p>Precio: {item.price}</p>
-      <p>Cantidad: {item.quantity}</p>
+    <div className={styles.cartItem}>
+      <img className={styles.image} src={item.image || 'default-image-url.jpg'} alt={item.title} />
+      <h2 className={styles.title}>{item.title}</h2>
+      <p className={styles.description}>{item.description}</p>
+      <p className={styles.price}>Precio: {item.price}</p>
+      <p className={styles.quantity}>Cantidad: {item.quantity}</p>
     </div>
   );
 };
@@ -19,7 +20,7 @@ CartItem.propTypes = {
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
-    pictureUrl: PropTypes.string.isRequired, // Asegúrate de que pictureUrl esté presente
+    image: PropTypes.string.isRequired, // Asegúrate de que pictureUrl esté presente
   }).isRequired,
 };
 
