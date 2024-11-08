@@ -21,6 +21,7 @@ const fetchItemById = async (itemId) => {
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
+  const [quantity, setQuantity] = useState(1); // Estado para la cantidad seleccionada
   const { addCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -40,7 +41,7 @@ const ItemDetailContainer = () => {
         title: item.name,
         pictureUrl: item.pictureUrl || 'default-image-url.jpg', // Asegúrate de que pictureUrl esté presente
       };
-      addCart(productToAdd, 1); // Agrega el ítem al carrito con una cantidad de 1
+      addCart(productToAdd, quantity); // Agrega el ítem al carrito con la cantidad seleccionada
       await new Promise(resolve => setTimeout(resolve, 0)); // Espera a que el estado del carrito se actualice
       await endPurchase(cart); // Finaliza la compra con el carrito actualizado
       navigate('/cart'); // Redirige al carrito de compras
@@ -55,6 +56,13 @@ const ItemDetailContainer = () => {
           <p>{item.description}</p>
           <p>Precio: {item.price}</p>
           <p>Stock: {item.stock}</p>
+          <input 
+            type="number" 
+            value={quantity} 
+            min="1" 
+            max={item.stock} 
+            onChange={(e) => setQuantity(Number(e.target.value))} 
+          />
           <button onClick={handleBuyNow}>Comprar Ahora</button>
         </div>
       ) : (

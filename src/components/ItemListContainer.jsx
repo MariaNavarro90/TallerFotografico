@@ -6,8 +6,8 @@ export const fetchItemsByCategory = async (categoryId) => {
   // Simula una llamada a una API
   const mockData = {
     talleres: [
-      { id: 1, name: 'Taller Creativo', description: '&quot;Otras Maneras de Mirar&quot; es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero',image:'../public/tallerCreativo.jpeg',price: 100, stock: 10 },
-      { id: 2, name: 'Salidas Fotograficas', description: (
+      { id: 1, name: 'Taller Creativo', canBuy: true, description: '&quot;Otras Maneras de Mirar&quot; es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero',image:'../public/tallerCreativo.jpeg',price: 100, stock: 10 },
+      { id: 2, name: 'Salidas Fotograficas', canBuy: true, description: (
         <>
           <p>Vení a divertirte y a disfrutar de salidas fotográficas por la ciudad ✨</p>
           <p>
@@ -24,7 +24,7 @@ export const fetchItemsByCategory = async (categoryId) => {
       ),image:'../public/salidasFotograficas.jpeg', price: 150, stock: 5 },
     ],
     'sobre-nosotros': [
-      { id: 3, name: 'Nuestra Historia', description: (
+      { id: 5, name: 'Nuestra Historia', description: (
         <>
           <p>
             Lienzo y Balcón es un espacio de creación artística fundado por Vero y Geru, dos apasionados por las artes visuales que buscan conectar a las personas con su creatividad a través de experiencias únicas e inspiradoras. En su estudio, organizan talleres donde artistas emergentes y consagrados colaboran para ofrecer diversas formas de expresión, como la fotografía, el collage y la escritura.
@@ -57,8 +57,8 @@ export const fetchItemsByCategory = async (categoryId) => {
       ), image: '../public/geru.png' },
     ],
     productos: [
-      { id: 4, name: 'Cámara', description: 'Cámara profesional', image:'../public/camara.jpg', price: 500, stock: 2 },
-      { id: 5, name: 'Trípode', description: 'Trípode ajustable', image:'../public/tripode.jpg', price: 75, stock: 15 },
+      { id: 3, name: 'Cámara', description: 'Cámara profesional', image:'../public/camara.jpg', canBuy: true, price: 500, stock: 2 },
+      { id: 4, name: 'Trípode', description: 'Trípode ajustable', image:'../public/tripode.jpg', canBuy: true, price: 75, stock: 15 },
     ],
     contacto: [
       { id: 6, name: 'Contáctanos', description: (
@@ -104,7 +104,7 @@ const ItemListContainer = () => {
   return (
     <div>
       <div style={{ padding: '20px', backgroundColor: '#F5B045', borderRadius: '5px', textAlign: 'center', marginTop: '20px'}}> {/* Fondo amarillo */}
-        <h1 style={{ color: '#2D2D2D' }}>{categoryId ? `${categoryId}` : 'All Items'}</h1> 
+        <h1 style={{ color: '#2D2D2D' }}>{categoryId ? `${categoryId}` : 'Lienzo & Balcon'}</h1> 
       </div>
       <FetchItems
         categoryId={categoryId}

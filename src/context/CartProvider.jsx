@@ -41,8 +41,12 @@ const CartProvider = ({ children }) => {
         return cart.some(cartProduct => cartProduct.id === productId);
     };
 
+    const clearCart = () => {
+        setCart([]);
+    };
+
     return (
-        <Cart.Provider value={{ cart, addCart, quantity }}>
+        <Cart.Provider value={{ cart, addCart, clearCart, quantity }}>
             {children}
         </Cart.Provider>
     );
