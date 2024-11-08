@@ -4,6 +4,7 @@ import logo from '../assets/logo.svg';
 import CartWidget from './CartWidget';
 
 const NavBar = () => {
+
   return (
     <ul>
       <li>
