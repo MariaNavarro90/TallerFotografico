@@ -11,7 +11,7 @@ const ItemList = ({ items }) => {
             <img src={item.image} alt={item.name} />
             <p>{item.description}</p>
             {item.canBuy && (
-              <a href={`/item/${item.id}`} className="button-link">Ver mas</a>
+              <a href={`/${item.type === 'workshop' ? 'workshops' : 'products'}/${item.id}`} className="button-link">Ver mas</a>
             )}
             <hr />
           </li>
@@ -27,6 +27,7 @@ ItemList.propTypes = {
       name: PropTypes.string.isRequired,
       image: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

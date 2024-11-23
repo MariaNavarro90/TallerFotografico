@@ -5,7 +5,6 @@ import styles from "../style/cart.module.css";
 import { NavLink } from "react-router-dom";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
-import endPurchase from "../services/endPurchase";
 
 const Cart = () => {
     const { cart, clearCart } = useContext(CartContext);
