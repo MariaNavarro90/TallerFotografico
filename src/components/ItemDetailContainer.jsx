@@ -54,6 +54,7 @@ const ItemDetailContainer = () => {
       {item ? (
         <div>
           <h1>{item.name}</h1>
+          <img src={item.image} alt={item.name} />
           <p>{item.description}</p>
           <p>Precio: {item.price}</p>
           <p>Stock: {item.stock}</p>
