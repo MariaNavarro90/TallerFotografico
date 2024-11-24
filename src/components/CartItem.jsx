@@ -15,12 +15,12 @@ const CartItem = ({ item }) => {
 
 CartItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     quantity: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired, // Asegúrate de que pictureUrl esté presente
+    image: PropTypes.string.isRequired, 
   }).isRequired,
 };
 

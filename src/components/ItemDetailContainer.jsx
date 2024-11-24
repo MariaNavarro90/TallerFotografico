@@ -22,7 +22,7 @@ const fetchItemById = async (itemId) => {
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const [quantity, setQuantity] = useState(1); // Estado para la cantidad seleccionada
+  const [quantity, setQuantity] = useState(1);
   const { addCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -40,12 +40,12 @@ const ItemDetailContainer = () => {
       const productToAdd = {
         ...item,
         title: item.name,
-        pictureUrl: item.pictureUrl || 'default-image-url.jpg', // Asegúrate de que pictureUrl esté presente
+        pictureUrl: item.pictureUrl || 'default-image-url.jpg', 
       };
-      addCart(productToAdd, quantity); // Agrega el ítem al carrito con la cantidad seleccionada
-      await new Promise(resolve => setTimeout(resolve, 0)); // Espera a que el estado del carrito se actualice
-      await endPurchase(cart); // Finaliza la compra con el carrito actualizado
-      navigate('/cart'); // Redirige al carrito de compras
+      addCart(productToAdd, quantity); 
+      await new Promise(resolve => setTimeout(resolve, 0)); 
+      await endPurchase(cart); 
+      navigate('/cart'); 
     }
   };
 
