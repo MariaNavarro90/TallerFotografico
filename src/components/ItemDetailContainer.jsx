@@ -3,25 +3,26 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Cart as CartContext } from "../context/CartProvider";
 import endPurchase from "../services/endPurchase";
 
-const fetchItemById = async (itemId) => {
-  const mockData = {
-    1: { id: 1, name: 'Taller Creativo', description: '"Otras Maneras de Mirar" es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero', image:'../public/tallerCreativo.jpeg', price: 100, stock: 10 },
-    2: { id: 2, name: 'Salidas fotográficas', description: 'Salimos a la ciudad', image:'../public/salidasFotograficas.jpeg', price: 150, stock: 5 },
-    3: { id: 3, name: 'Cámara', description: 'Cámara profesional', image:'../public/camara.jpg', price: 500, stock: 2 },
-    4: { id: 4, name: 'Trípode', description: 'Trípode ajustable', image:'../public/tripode.jpg', price: 75, stock: 15 }
-  };
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(mockData[itemId] || null);
-    }, 1000);
-  });
+const fetchItemById = async (itemId) => {
+  const db = getFirestore();
+  const path = window.location.pathname.includes('products') ? 'products' : 'workshops';
+  const docRef = doc(db, path, itemId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return { id: docSnap.id, ...docSnap.data() };
+  } else {
+    console.log("No such document!");
+    return null;
+  }
 };
 
 const ItemDetailContainer = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const [quantity, setQuantity] = useState(1); // Estado para la cantidad seleccionada
+  const [quantity, setQuantity] = useState(1);
   const { addCart, cart } = useContext(CartContext);
   const navigate = useNavigate();
 
@@ -39,12 +40,12 @@ const ItemDetailContainer = () => {
       const productToAdd = {
         ...item,
         title: item.name,
-        pictureUrl: item.pictureUrl || 'default-image-url.jpg', // Asegúrate de que pictureUrl esté presente
+        pictureUrl: item.pictureUrl || 'default-image-url.jpg', 
       };
-      addCart(productToAdd, quantity); // Agrega el ítem al carrito con la cantidad seleccionada
-      await new Promise(resolve => setTimeout(resolve, 0)); // Espera a que el estado del carrito se actualice
-      await endPurchase(cart); // Finaliza la compra con el carrito actualizado
-      navigate('/cart'); // Redirige al carrito de compras
+      addCart(productToAdd, quantity); 
+      await new Promise(resolve => setTimeout(resolve, 0)); 
+      await endPurchase(cart); 
+      navigate('/cart'); 
     }
   };
 
@@ -66,7 +67,7 @@ const ItemDetailContainer = () => {
           <button onClick={handleBuyNow}>Comprar Ahora</button>
         </div>
       ) : (
-        <p>Loading...</p>
+        <p>Loading... </p>
       )}
     </div>
   );

@@ -1,28 +1,12 @@
 import { useParams } from 'react-router-dom';
 import FetchItems from './FetchItems'; 
 import ItemList from './ItemList.jsx';
+import {db} from '../firebase/config';
+import { collection, getDocs } from "firebase/firestore"; 
 
 export const fetchItemsByCategory = async (categoryId) => {
   // Simula una llamada a una API
-  const mockData = {
-    talleres: [
-      { id: 1, name: 'Taller Creativo', canBuy: true, description: '&quot;Otras Maneras de Mirar&quot; es un taller para conectar con la creatividad a través de la fotografía, la escritura y el collage 🤳📷🎨📝. Todos los materiales están incluidos y al finalizar el taller, cada participante se lleva su collage. Esse y Vero',image:'../public/tallerCreativo.jpeg',price: 100, stock: 10 },
-      { id: 2, name: 'Salidas Fotograficas', canBuy: true, description: (
-        <>
-          <p>Vení a divertirte y a disfrutar de salidas fotográficas por la ciudad ✨</p>
-          <p>
-            Realizaremos 5 salidas por la ciudad autónoma de Buenos Aires para aprender sobre 
-            composición fotográfica y aplicarlo en la práctica. El último encuentro cerramos el taller 
-            compartiendo los proyectos de todxs los participantes: ¡te llevas una foto de toda esta experiencia!
-          </p>
-          <p>Nos encontramos los días sábados a partir del 2 de Noviembre, de 16 a 18hs.</p>
-          <p>
-            El primer encuentro será en el barrio de Saavedra, CABA. Nos encontramos para dar inicio 
-            a esta experiencia, conocernos y empezar a fotear.
-          </p>
-        </>
-      ),image:'../public/salidasFotograficas.jpeg', price: 150, stock: 5 },
-    ],
+  const secciones = {
     'sobre-nosotros': [
       { id: 5, name: 'Nuestra Historia', description: (
         <>
@@ -56,10 +40,6 @@ export const fetchItemsByCategory = async (categoryId) => {
         </>
       ), image: '../public/geru.png' },
     ],
-    productos: [
-      { id: 3, name: 'Cámara', description: 'Cámara profesional', image:'../public/camara.jpg', canBuy: true, price: 500, stock: 2 },
-      { id: 4, name: 'Trípode', description: 'Trípode ajustable', image:'../public/tripode.jpg', canBuy: true, price: 75, stock: 15 },
-    ],
     contacto: [
       { id: 6, name: 'Contáctanos', description: (
         <>
@@ -87,16 +67,44 @@ export const fetchItemsByCategory = async (categoryId) => {
     ],
   };
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      if (categoryId) {
-        resolve(mockData[categoryId] || []);
-      } else {
-        resolve([...mockData.talleres, ...mockData.productos]);
+  return new Promise((resolve, reject) => {
+    if (categoryId) {
+      if (categoryId == "talleres") {
+        let talleres = [];
+        (async () => {
+          try {
+            const querySnapshot = await getDocs(collection(db, "workshops"));
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, " => ", doc.data());
+              talleres.push({ id: doc.id, type: 'workshop', ...doc.data() });
+            });
+            resolve(talleres);
+          } catch (error) {
+            reject(error);
+          }
+        })();
+      } else if (categoryId == "productos") {
+        let productos = [];
+        (async () => {
+          try {
+            const querySnapshot = await getDocs(collection(db, "products"));
+            querySnapshot.forEach((doc) => {
+              console.log(doc.id, " => ", doc.data());
+              productos.push({ id: doc.id, type: 'product', ...doc.data() });
+            });
+            resolve(productos);
+          } catch (error) {
+            reject(error);
+          }
+        })();
+      } else if (categoryId != null) {
+        resolve(secciones[categoryId] || []);
       }
-    }, 1000);
+    } else {
+      resolve([...secciones['sobre-nosotros'], ...secciones.contacto]);
+    }
   });
-};
+  };
 
 const ItemListContainer = () => {
   const { categoryId } = useParams();

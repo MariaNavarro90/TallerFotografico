@@ -12,7 +12,6 @@ const CartProvider = ({ children }) => {
     const [quantity] = useState(0);
 
     useEffect(() => {
-        // Guardar el carrito en localStorage cada vez que cambie
         localStorage.setItem('cart', JSON.stringify(cart));
     }, [cart]);
 
